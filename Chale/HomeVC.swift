@@ -13,7 +13,7 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
     
-    var homeArray: [HomeModel] = []
+    var homeArray: [EventModel] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +21,7 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         tableView.delegate = self
         tableView.dataSource = self
         
-        homeArray = [HomeModel(eventName: "Boba Run", dateTime: "6 PM, Oct 21", location: "Cha")]
+        homeArray = [EventModel(eventName: "Boba Run", dateTime: "6 PM, Oct 21", location: "Cha for Tea")]
     }
     
     // TableView Functions
@@ -46,7 +46,11 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
+        if let dest = segue.destination as? MoreInfoVC {
+            if let item = sender as? EventModel {
+                dest.eventInfo = item
+            }
+        }
     }
     ///
     
@@ -63,7 +67,7 @@ class HomeCell: UITableViewCell {
     @IBOutlet weak var location: UILabel!
     @IBOutlet weak var numPeople: UILabel!
     
-    func updateUI(homeCell: HomeModel) {
+    func updateUI(homeCell: EventModel) {
         planName.text = homeCell.eventName
         dateTime.text = homeCell.dateTime
         location.text = homeCell.location

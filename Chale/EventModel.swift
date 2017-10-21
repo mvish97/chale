@@ -8,7 +8,7 @@
 
 import Foundation
 
-class HomeModel {
+class EventModel {
     
     private var _eventName: String!
     private var _dateTime: String!
