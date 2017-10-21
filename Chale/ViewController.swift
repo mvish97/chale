@@ -15,8 +15,6 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        enterButton.layer.cornerRadius = 10.0
     }
     
     @IBAction func pressedEnter(_ sender: UIButton) {
