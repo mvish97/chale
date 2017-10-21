@@ -9,7 +9,7 @@
 import UIKit
 import TwilioChatClient
 
-class ChatVC: UIViewController {
+class ChatVC: UIViewController, BackendDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var textField: UITextField!
@@ -18,26 +18,74 @@ class ChatVC: UIViewController {
     var client : TwilioChatClient? = nil
     var generalChannel: TCHChannel? = nil
     var identity = ""
+    let backend = Backend()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-        
         textField.delegate = self
+        backend.delegate = self
     }
-
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        login()
+    }
+    
+    func login() {
+        let deviceId = UIDevice.current.identifierForVendor!.uuidString
+        print(userName)
+        backend.getJSONData(from: "token/", withParams: ["device": deviceId, "id": userName])
+    }
+    
+    func processDataOfType(JSON: Dictionary<String, Any>) {
+        if let id = JSON["identity"] as? String{
+            identity = id
+        }
+        
+        if let token = JSON["token"] as? String{
+            TwilioChatClient.init()
+            TwilioChatClient.chatClient(withToken: token, properties: nil, delegate: self){
+                (result, chatClient) in
+                print("\nchatCLient : \(chatClient), \n result : \(result)")
+                self.client = chatClient
+//                let options = [
+//                    TCHChannelOptionFriendlyName: "General Channel",
+//                    TCHChannelOptionType: TCHChannelType.public.rawValue
+//                    ] as [String : Any]
+//                self.client?.channelsList()?.createChannel(options: options, completion: {
+//                    channelResult, channel in
+//                    if (channelResult.isSuccessful()){
+//                        print("Channel created")
+//                    }
+//                    else{
+//                        print("Fuck ho gaya")
+//                    }
+//                })
+                DispatchQueue.main.async() {
+//                    self.navigationItem.prompt = "Logged in as \"\(self.identity)\""
+                    
+                    print("Logged in as \(self.identity)")
+                }
+            }
+        }
+    }
+    
+    func logout(){
+        if let client = client {
+            client.delegate = nil
+            client.shutdown()
+            self.client = nil
+        }
+    }
 }
-
-
-
-
 
 // Twilio Chat Delegate
 extension ChatVC: TwilioChatClientDelegate {
     
     func chatClient(_ client: TwilioChatClient, synchronizationStatusUpdated status: TCHClientSynchronizationStatus) {
+        print("\n\n ChatClient delegate called \n\n")
         if status == .completed {
             // Join (or create) the general channel
             let defaultChannel = "general"
@@ -80,8 +128,18 @@ extension ChatVC: TwilioChatClientDelegate {
 
 extension ChatVC: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        print("Called and generalChannel is \(generalChannel)")
         if let messages = self.generalChannel?.messages {
-            messages.sendMessage(with: TCHMessageOptions(), completion: nil)
+            let options = TCHMessageOptions().withBody(textField.text!)
+            messages.sendMessage(with: options){
+                result, message in
+                if result.isSuccessful(){
+                    print("Message Sent")
+                }
+                else{
+                    print("Tumhara app bakwas hai")
+                }
+            }
             textField.text = ""
             textField.resignFirstResponder()
         }

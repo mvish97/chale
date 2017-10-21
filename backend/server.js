@@ -14,8 +14,8 @@ username for the client requesting a token, and takes a device ID as a query
 parameter.
 */
 app.get('/token', (request, response) => {
-  const appName = 'TwilioChatDemo';
-  const identity = 'John Dope';
+  const appName = 'Chale';
+  const identity = request.query.id;
   const deviceId = request.query.device;
 
   // Create a unique ID for the client on their current device
