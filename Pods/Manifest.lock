@@ -1,12 +1,15 @@
 PODS:
+  - Alamofire (4.5.1)
   - TwilioChatClient (2.0.1)
 
 DEPENDENCIES:
+  - Alamofire (~> 4.5)
   - TwilioChatClient (~> 2.0.1)
 
 SPEC CHECKSUMS:
+  Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
   TwilioChatClient: 35eec4d29dadd2791f474872dddf87daaf0cd2b6
 
-PODFILE CHECKSUM: 7387dafef6ae48ed343f738433f81478e815307b
+PODFILE CHECKSUM: f41b93951aaa04f85375773324ae92d8e138f838
 
 COCOAPODS: 1.2.1

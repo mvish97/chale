@@ -20,7 +20,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func pressedEnter(_ sender: UIButton) {
-        print("Pressed Enter")
+        performSegue(withIdentifier: "goToHome", sender: nil)
     }
     
 
