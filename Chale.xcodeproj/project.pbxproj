@@ -17,6 +17,7 @@
 		057E63251F9B2FF000C6A0F2 /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057E63241F9B2FF000C6A0F2 /* HomeModel.swift */; };
 		2F7706823981C8B4268E69D3 /* Pods_Chale.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F2A942E42894AE5AD974BB9 /* Pods_Chale.framework */; };
 		51FA3E891F9B321A008017AA /* backend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51FA3E881F9B321A008017AA /* backend.swift */; };
+		51FA3E8B1F9B4469008017AA /* ChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51FA3E8A1F9B4469008017AA /* ChatVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		2F2A942E42894AE5AD974BB9 /* Pods_Chale.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Chale.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C04E3FF5B10A983CA0416DB /* Pods-Chale.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chale.release.xcconfig"; path = "Pods/Target Support Files/Pods-Chale/Pods-Chale.release.xcconfig"; sourceTree = "<group>"; };
 		51FA3E881F9B321A008017AA /* backend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = backend.swift; sourceTree = "<group>"; };
+		51FA3E8A1F9B4469008017AA /* ChatVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatVC.swift; sourceTree = "<group>"; };
 		BEFDD84AB2BFE5CF0FBCD76F /* Pods-Chale.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chale.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Chale/Pods-Chale.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -79,6 +81,7 @@
 				057E63171F9B0C1600C6A0F2 /* LaunchScreen.storyboard */,
 				057E631A1F9B0C1600C6A0F2 /* Info.plist */,
 				51FA3E881F9B321A008017AA /* backend.swift */,
+				51FA3E8A1F9B4469008017AA /* ChatVC.swift */,
 			);
 			path = Chale;
 			sourceTree = "<group>";
@@ -224,6 +227,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				51FA3E891F9B321A008017AA /* backend.swift in Sources */,
+				51FA3E8B1F9B4469008017AA /* ChatVC.swift in Sources */,
 				057E63211F9B26EA00C6A0F2 /* MaterialView.swift in Sources */,
 				057E63231F9B2E0000C6A0F2 /* HomeVC.swift in Sources */,
 				057E63111F9B0C1600C6A0F2 /* ViewController.swift in Sources */,
